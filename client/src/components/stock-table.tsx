@@ -36,7 +36,10 @@ export function StockTable({ data }: StockTableProps) {
       aVal = Number(aVal);
       bVal = Number(bVal);
     }
-
+    if (sortColumn === "SMADistance" ) {
+      aVal = Number((a["close"]-a["SMA20"])/a["SMA20"] * 100);
+      bVal = Number((b["close"]-b["SMA20"])/b["SMA20"] * 100);
+    }
     if (sortDirection === "asc") {
       return aVal > bVal ? 1 : -1;
     } else {
@@ -61,7 +64,7 @@ export function StockTable({ data }: StockTableProps) {
             <TableHead className="px-6 py-3">
               <Button
                 variant="ghost"
-                className="h-auto p-0 font-medium text-xs text-gray-500 uppercase tracking-wider hover:bg-gray-100"
+                className="h-auto p-0 font-medium text-xs text-gray-500 tracking-wider hover:bg-gray-100"
                 onClick={() => handleSort("symbol")}
               >
                 Symbol
@@ -71,7 +74,7 @@ export function StockTable({ data }: StockTableProps) {
             <TableHead className="px-6 py-3">
               <Button
                 variant="ghost"
-                className="h-auto p-0 font-medium text-xs text-gray-500 uppercase tracking-wider hover:bg-gray-100"
+                className="h-auto p-0 font-medium text-xs text-gray-500 tracking-wider hover:bg-gray-100"
                 onClick={() => handleSort("close")}
               >
                 Price
@@ -81,7 +84,7 @@ export function StockTable({ data }: StockTableProps) {
             <TableHead className="px-6 py-3">
               <Button
                 variant="ghost"
-                className="h-auto p-0 font-medium text-xs text-gray-500 uppercase tracking-wider hover:bg-gray-100"
+                className="h-auto p-0 font-medium text-xs text-gray-500 tracking-wider hover:bg-gray-100"
                 onClick={() => handleSort("change")}
               >
                 Change
@@ -91,7 +94,7 @@ export function StockTable({ data }: StockTableProps) {
             <TableHead className="px-6 py-3 hidden md:table-cell">
               <Button
                 variant="ghost"
-                className="h-auto p-0 font-medium text-xs text-gray-500 uppercase tracking-wider hover:bg-gray-100"
+                className="h-auto p-0 font-medium text-xs text-gray-500 tracking-wider hover:bg-gray-100"
                 onClick={() => handleSort("volume")}
               >
                 Volume
@@ -101,7 +104,7 @@ export function StockTable({ data }: StockTableProps) {
             <TableHead className="px-6 py-3 hidden lg:table-cell">
               <Button
                 variant="ghost"
-                className="h-auto p-0 font-medium text-xs text-gray-500 uppercase tracking-wider hover:bg-gray-100"
+                className="h-auto p-0 font-medium text-xs text-gray-500 tracking-wider hover:bg-gray-100"
                 onClick={() => handleSort("relativeVolume")}
               >
                 RVol 10D
@@ -121,15 +124,17 @@ export function StockTable({ data }: StockTableProps) {
             <TableHead className="px-6 py-3 hidden lg:table-cell">
               <Button
                 variant="ghost"
-                className="h-auto p-0 font-medium text-xs text-gray-500 uppercase tracking-wider hover:bg-gray-100"
+                className="h-auto p-0 font-medium text-xs text-gray-500 tracking-wider hover:bg-gray-100"
+                onClick={() => handleSort("SMADistance")}
               >
                 SMA Distance
+                {getSortIcon("SMADistance")}
               </Button>
             </TableHead>   
             <TableHead className="px-6 py-3 hidden lg:table-cell">
               <Button
                 variant="ghost"
-                className="h-auto p-0 font-medium text-xs text-gray-500 uppercase tracking-wider hover:bg-gray-100"
+                className="h-auto p-0 font-medium text-xs text-gray-500 tracking-wider hover:bg-gray-100"
                 onClick={() => handleSort("marketCap")}
               >
                 MCap
@@ -139,7 +144,7 @@ export function StockTable({ data }: StockTableProps) {
             <TableHead className="px-6 py-3 hidden xl:table-cell">
               <Button
                 variant="ghost"
-                className="h-auto p-0 font-medium text-xs text-gray-500 uppercase tracking-wider hover:bg-gray-100"
+                className="h-auto p-0 font-medium text-xs text-gray-500 tracking-wider hover:bg-gray-100"
                 onClick={() => handleSort("sector")}
               >
                 Sector
