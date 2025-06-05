@@ -122,10 +122,8 @@ export function StockTable({ data }: StockTableProps) {
               <Button
                 variant="ghost"
                 className="h-auto p-0 font-medium text-xs text-gray-500 uppercase tracking-wider hover:bg-gray-100"
-                onClick={() => handleSort("sma20")}
               >
                 Diff to SMA20
-                {getSortIcon("sma20")}
               </Button>
             </TableHead>   
             <TableHead className="px-6 py-3 hidden lg:table-cell">
