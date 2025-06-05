@@ -5,7 +5,7 @@ import { ArrowUpDown, ArrowUp, ArrowDown } from "lucide-react";
 import { formatPrice, formatVolume, formatMarketCap } from "@/lib/utils";
 import type { StockResponse } from "@shared/schema";
 
-type SortColumn = "symbol" | "name" | "close" | "change" | "volume" | "marketCap" | "sector";
+type SortColumn = "symbol" | "name" | "close" | "change" | "volume" | "relativeVolume" | "sma20" | "marketCap" | "sector";
 type SortDirection = "asc" | "desc";
 
 interface StockTableProps {
@@ -32,7 +32,7 @@ export function StockTable({ data }: StockTableProps) {
     let bVal: any = b[sortColumn];
 
     // Handle numeric sorting
-    if (sortColumn === "close" || sortColumn === "change" || sortColumn === "volume" || sortColumn === "marketCap") {
+    if (sortColumn === "close" || sortColumn === "change" || sortColumn === "volume" || sortColumn === "marketCap" || sortColumn === "relativeVolume" || sortColumn === "sma20" ) {
       aVal = Number(aVal);
       bVal = Number(bVal);
     }
@@ -128,6 +128,26 @@ export function StockTable({ data }: StockTableProps) {
                 {getSortIcon("sector")}
               </Button>
             </TableHead>
+            <TableHead className="px-6 py-3 hidden lg:table-cell">
+              <Button
+                variant="ghost"
+                className="h-auto p-0 font-medium text-xs text-gray-500 uppercase tracking-wider hover:bg-gray-100"
+                onClick={() => handleSort("relativeVolume")}
+              >
+                Market Cap
+                {getSortIcon("relativeVolume")}
+              </Button>
+            </TableHead>
+            <TableHead className="px-6 py-3 hidden lg:table-cell">
+              <Button
+                variant="ghost"
+                className="h-auto p-0 font-medium text-xs text-gray-500 uppercase tracking-wider hover:bg-gray-100"
+                onClick={() => handleSort("sma20")}
+              >
+                Market Cap
+                {getSortIcon("sma20")}
+              </Button>
+            </TableHead>            
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -168,6 +188,12 @@ export function StockTable({ data }: StockTableProps) {
                 <TableCell className="px-6 py-4 whitespace-nowrap hidden xl:table-cell">
                   <div className="text-sm text-gray-600">{stock.sector}</div>
                 </TableCell>
+                <TableCell className="px-6 py-4 whitespace-nowrap hidden xl:table-cell">
+                  <div className="text-sm text-gray-600">{formatVolume(stock.relativeVolume)}</div>
+                </TableCell>
+                 <TableCell className="px-6 py-4 whitespace-nowrap hidden xl:table-cell">
+                  <div className="text-sm text-gray-600">{stock.sma20.toFixes(2)}</div>
+                </TableCell>               
               </TableRow>
             );
           })}
