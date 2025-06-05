@@ -104,7 +104,7 @@ export function StockTable({ data }: StockTableProps) {
                 className="h-auto p-0 font-medium text-xs text-gray-500 uppercase tracking-wider hover:bg-gray-100"
                 onClick={() => handleSort("relativeVolume")}
               >
-                Relative Volume
+                RVol 10D
                 {getSortIcon("relativeVolume")}
               </Button>
             </TableHead>
@@ -114,7 +114,7 @@ export function StockTable({ data }: StockTableProps) {
                 className="h-auto p-0 font-medium text-xs text-gray-500 uppercase tracking-wider hover:bg-gray-100"
                 onClick={() => handleSort("sma20")}
               >
-                SMA 20
+                SMA20
                 {getSortIcon("sma20")}
               </Button>
             </TableHead>   
@@ -123,7 +123,7 @@ export function StockTable({ data }: StockTableProps) {
                 variant="ghost"
                 className="h-auto p-0 font-medium text-xs text-gray-500 uppercase tracking-wider hover:bg-gray-100"
               >
-                Diff to SMA20
+                SMA Distance
               </Button>
             </TableHead>   
             <TableHead className="px-6 py-3 hidden lg:table-cell">
@@ -132,7 +132,7 @@ export function StockTable({ data }: StockTableProps) {
                 className="h-auto p-0 font-medium text-xs text-gray-500 uppercase tracking-wider hover:bg-gray-100"
                 onClick={() => handleSort("marketCap")}
               >
-                Market Cap
+                MCap
                 {getSortIcon("marketCap")}
               </Button>
             </TableHead>
