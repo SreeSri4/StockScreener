@@ -37,8 +37,8 @@ export function StockTable({ data }: StockTableProps) {
       bVal = Number(bVal);
     }
     if (sortColumn === "SMADistance" ) {
-      aVal = Number((a["close"]-a["SMA20"])/a["SMA20"] * 100);
-      bVal = Number((b["close"]-b["SMA20"])/b["SMA20"] * 100);
+      aVal = Number((a["close"]-a["sma20"])/a["sma20"] * 100);
+      bVal = Number((b["close"]-b["sma20"])/b["sma20"] * 100);
     }
     if (sortDirection === "asc") {
       return aVal > bVal ? 1 : -1;
