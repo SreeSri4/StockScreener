@@ -5,7 +5,7 @@ import { ArrowUpDown, ArrowUp, ArrowDown } from "lucide-react";
 import { formatPrice, formatVolume, formatMarketCap } from "@/lib/utils";
 import type { StockResponse } from "@shared/schema";
 
-type SortColumn = "symbol" | "name" | "close" | "change" | "volume" | "relativeVolume" | "sma20" | "marketCap" | "sector";
+type SortColumn = "symbol" | "close" | "change" | "volume" | "relativeVolume" | "sma20" | "marketCap" | "sector";
 type SortDirection = "asc" | "desc";
 
 interface StockTableProps {
@@ -68,16 +68,6 @@ export function StockTable({ data }: StockTableProps) {
                 {getSortIcon("symbol")}
               </Button>
             </TableHead>
-            <TableHead className="px-6 py-3 hidden sm:table-cell">
-              <Button
-                variant="ghost"
-                className="h-auto p-0 font-medium text-xs text-gray-500 uppercase tracking-wider hover:bg-gray-100"
-                onClick={() => handleSort("name")}
-              >
-                Company Name
-                {getSortIcon("name")}
-              </Button>
-            </TableHead>
             <TableHead className="px-6 py-3">
               <Button
                 variant="ghost"
@@ -112,26 +102,6 @@ export function StockTable({ data }: StockTableProps) {
               <Button
                 variant="ghost"
                 className="h-auto p-0 font-medium text-xs text-gray-500 uppercase tracking-wider hover:bg-gray-100"
-                onClick={() => handleSort("marketCap")}
-              >
-                Market Cap
-                {getSortIcon("marketCap")}
-              </Button>
-            </TableHead>
-            <TableHead className="px-6 py-3 hidden xl:table-cell">
-              <Button
-                variant="ghost"
-                className="h-auto p-0 font-medium text-xs text-gray-500 uppercase tracking-wider hover:bg-gray-100"
-                onClick={() => handleSort("sector")}
-              >
-                Sector
-                {getSortIcon("sector")}
-              </Button>
-            </TableHead>
-            <TableHead className="px-6 py-3 hidden lg:table-cell">
-              <Button
-                variant="ghost"
-                className="h-auto p-0 font-medium text-xs text-gray-500 uppercase tracking-wider hover:bg-gray-100"
                 onClick={() => handleSort("relativeVolume")}
               >
                 Relative Volume
@@ -147,7 +117,27 @@ export function StockTable({ data }: StockTableProps) {
                 SMA 20
                 {getSortIcon("sma20")}
               </Button>
-            </TableHead>            
+            </TableHead>   
+            <TableHead className="px-6 py-3 hidden lg:table-cell">
+              <Button
+                variant="ghost"
+                className="h-auto p-0 font-medium text-xs text-gray-500 uppercase tracking-wider hover:bg-gray-100"
+                onClick={() => handleSort("marketCap")}
+              >
+                Market Cap
+                {getSortIcon("marketCap")}
+              </Button>
+            </TableHead>
+            <TableHead className="px-6 py-3 hidden xl:table-cell">
+              <Button
+                variant="ghost"
+                className="h-auto p-0 font-medium text-xs text-gray-500 uppercase tracking-wider hover:bg-gray-100"
+                onClick={() => handleSort("sector")}
+              >
+                Sector
+                {getSortIcon("sector")}
+              </Button>
+            </TableHead>  
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -166,9 +156,6 @@ export function StockTable({ data }: StockTableProps) {
                     {stock.symbol}
                   </button>
                 </TableCell>
-                <TableCell className="px-6 py-4 whitespace-nowrap hidden sm:table-cell">
-                  <div className="text-sm text-gray-900" title={stock.description}>{stock.name}</div>
-                </TableCell>
                 <TableCell className="px-6 py-4 whitespace-nowrap">
                   <div className="text-sm font-medium text-gray-900">
                     {formatPrice(stock.close)}
@@ -182,18 +169,18 @@ export function StockTable({ data }: StockTableProps) {
                 <TableCell className="px-6 py-4 whitespace-nowrap hidden md:table-cell">
                   <div className="text-sm text-gray-900">{formatVolume(stock.volume)}</div>
                 </TableCell>
-                <TableCell className="px-6 py-4 whitespace-nowrap hidden lg:table-cell">
-                  <div className="text-sm text-gray-900">{formatMarketCap(stock.marketCap)}</div>
-                </TableCell>
-                <TableCell className="px-6 py-4 whitespace-nowrap hidden xl:table-cell">
-                  <div className="text-sm text-gray-600">{stock.sector}</div>
-                </TableCell>
                 <TableCell className="px-6 py-4 whitespace-nowrap hidden xl:table-cell">
                   <div className="text-sm text-gray-600">{stock.relativeVolume.toFixed(2)}</div>
                 </TableCell>
                  <TableCell className="px-6 py-4 whitespace-nowrap hidden xl:table-cell">
                   <div className="text-sm text-gray-600">{stock.sma20.toFixed(2)}</div>
-                </TableCell>               
+                </TableCell>
+                <TableCell className="px-6 py-4 whitespace-nowrap hidden lg:table-cell">
+                  <div className="text-sm text-gray-900">{formatMarketCap(stock.marketCap)}</div>
+                </TableCell>
+                <TableCell className="px-6 py-4 whitespace-nowrap hidden xl:table-cell">
+                  <div className="text-sm text-gray-600">{stock.sector}</div>
+                </TableCell>                
               </TableRow>
             );
           })}
