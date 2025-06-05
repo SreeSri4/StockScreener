@@ -11,6 +11,8 @@ export const stocks = pgTable("stocks", {
   changePercent: decimal("change_percent", { precision: 8, scale: 4 }).notNull(),
   volume: bigint("volume", { mode: "number" }).notNull(),
   marketCap: bigint("market_cap", { mode: "number" }).notNull(),
+  relativeVolume: bigint("relative_volume:, { mode: "number" }).notNull(),
+  sma20: bigint("sma20:, { mode: "number" }).notNull(),
   lastUpdated: timestamp("last_updated").defaultNow().notNull(),
 });
 
@@ -44,6 +46,7 @@ export const processedStockSchema = z.object({
   change: z.number(),
   volume: z.number(),
   relativeVolume: z.number(),
+  sma20: z.number(),
   marketCap: z.number(),
   sector: z.string(),
 });
