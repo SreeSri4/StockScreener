@@ -48,7 +48,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Process the data to match our frontend structure
       const processedStocks: ProcessedStock[] = validatedData.data.map(item => {
-        const [name, description, close, change, volume, relativeVolume, marketCap, sector] = item.d;
+        const [name, description, close, change, volume, relativeVolume, sma20, marketCap, sector] = item.d;
         
         // Extract symbol from the "s" field (e.g., "NSE:SOLARINDS" -> "SOLARINDS")
         const symbol = item.s.split(':')[1] || item.s;
@@ -61,6 +61,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           change: Number(change),
           volume: Number(volume),
           relativeVolume: Number(relativeVolume),
+          sma20: Number(sma20),
           marketCap: Number(marketCap),
           sector: String(sector),
         };
