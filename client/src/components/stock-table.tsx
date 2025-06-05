@@ -122,6 +122,16 @@ export function StockTable({ data }: StockTableProps) {
               <Button
                 variant="ghost"
                 className="h-auto p-0 font-medium text-xs text-gray-500 uppercase tracking-wider hover:bg-gray-100"
+                onClick={() => handleSort("sma20")}
+              >
+                Diff to SMA20
+                {getSortIcon("sma20")}
+              </Button>
+            </TableHead>   
+            <TableHead className="px-6 py-3 hidden lg:table-cell">
+              <Button
+                variant="ghost"
+                className="h-auto p-0 font-medium text-xs text-gray-500 uppercase tracking-wider hover:bg-gray-100"
                 onClick={() => handleSort("marketCap")}
               >
                 Market Cap
@@ -174,6 +184,11 @@ export function StockTable({ data }: StockTableProps) {
                 </TableCell>
                  <TableCell className="px-6 py-4 whitespace-nowrap hidden xl:table-cell">
                   <div className="text-sm text-gray-600">{stock.sma20.toFixed(2)}</div>
+                </TableCell>
+                <TableCell className="px-6 py-4 whitespace-nowrap hidden xl:table-cell">
+                  <div className={`text-sm font-medium ${stock.close >= stock.sma20 ? 'text-green-600' : 'text-red-600'}`}>
+                    {((stock.close - stock.sma20) / stock.sma20 * 100).toFixed(2)}%
+                  </div>
                 </TableCell>
                 <TableCell className="px-6 py-4 whitespace-nowrap hidden lg:table-cell">
                   <div className="text-sm text-gray-900">{formatMarketCap(stock.marketCap)}</div>
