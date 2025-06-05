@@ -8,7 +8,8 @@ export const screenerPayloads = {
       "close",
       "change",
       "volume",
-      "relative_volume_10d_calc",
+      "relative_volume",
+      "SMA20",
       "market_cap_basic",
       "sector"
     ],
@@ -186,7 +187,8 @@ export const screenerPayloads = {
       "close",
       "change",
       "volume",
-      "relative_volume_10d_calc",
+      "relative_volume",
+      "SMA20",
       "market_cap_basic",
       "sector"
     ],
@@ -364,7 +366,8 @@ export const screenerPayloads = {
       "close",
       "change",
       "volume",
-      "relative_volume_10d_calc",
+      "relative_volume",
+      "SMA20",
       "market_cap_basic",
       "sector"
     ],
@@ -537,7 +540,8 @@ export const screenerPayloads = {
       "close",
       "change",
       "volume",
-      "relative_volume_10d_calc",
+      "relative_volume",
+      "SMA20",
       "market_cap_basic",
       "sector"
     ],
