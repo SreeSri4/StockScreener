@@ -189,10 +189,10 @@ export function StockTable({ data }: StockTableProps) {
                   <div className="text-sm text-gray-600">{stock.sector}</div>
                 </TableCell>
                 <TableCell className="px-6 py-4 whitespace-nowrap hidden xl:table-cell">
-                  <div className="text-sm text-gray-600">{formatVolume(stock.relativeVolume)}</div>
+                  <div className="text-sm text-gray-600">{stock.relativeVolume.toFixed(2)}</div>
                 </TableCell>
                  <TableCell className="px-6 py-4 whitespace-nowrap hidden xl:table-cell">
-                  <div className="text-sm text-gray-600">{stock.sma20.toFixes(2)}</div>
+                  <div className="text-sm text-gray-600">{stock.sma20.toFixed(2)}</div>
                 </TableCell>               
               </TableRow>
             );
