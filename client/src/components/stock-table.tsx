@@ -134,7 +134,7 @@ export function StockTable({ data }: StockTableProps) {
                 className="h-auto p-0 font-medium text-xs text-gray-500 uppercase tracking-wider hover:bg-gray-100"
                 onClick={() => handleSort("relativeVolume")}
               >
-                Market Cap
+                Relative Volume
                 {getSortIcon("relativeVolume")}
               </Button>
             </TableHead>
@@ -144,7 +144,7 @@ export function StockTable({ data }: StockTableProps) {
                 className="h-auto p-0 font-medium text-xs text-gray-500 uppercase tracking-wider hover:bg-gray-100"
                 onClick={() => handleSort("sma20")}
               >
-                Market Cap
+                SMA 20
                 {getSortIcon("sma20")}
               </Button>
             </TableHead>            
